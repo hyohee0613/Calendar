@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Schedule {
 
-    private int id;
+    private long id;
     private String title;
     private String name;
     private int password;
