@@ -18,16 +18,16 @@ public class ScheduleRepository {
     }
 
 
-    // 기능
-    // 임시 저장
+    // 기능: DB 저장
     public Schedule save(Schedule schedule) {
         String sql = "INSERT INTO schedule (title, name, password, updated_at) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql,
-                schedule.getTitle(),
-                schedule.getName(),
-                schedule.getPassword(),
-                schedule.getUpdatedAt()
-        );
+
+        int rows = jdbcTemplate.update(sql,
+                    schedule.getTitle(),
+                    schedule.getName(),
+                    schedule.getPassword(),
+                    schedule.getUpdatedAt());
+
         return schedule;
     }
 }
