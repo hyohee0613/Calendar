@@ -15,7 +15,7 @@ public class ScheduleService {
     //기능
 
     public Schedule createSchedule(Schedule schedule) {
-        // 임시 구현: 저장 없이 그대로 반환 (이후 Repository 연결 예정)
+        // 임시: 저장 없이 그대로 반환 (Repository 연결 해야함)
         return schedule;
     }
 

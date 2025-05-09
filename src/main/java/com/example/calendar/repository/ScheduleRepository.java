@@ -1,6 +1,7 @@
 package com.example.calendar.repository;
 
 import com.example.calendar.model.Schedule;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
@@ -9,9 +10,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ScheduleRepository {
-    // 임시 저장 방식
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public ScheduleRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+
+    // 기능
+    // 임시 저장
     public Schedule save(Schedule schedule) {
-        // 실제 DB 로직이 들어올 자리
+        String sql = "INSERT INTO schedule (title, name, password, updated_at) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql,
+                schedule.getTitle(),
+                schedule.getName(),
+                schedule.getPassword(),
+                schedule.getUpdatedAt()
+        );
         return schedule;
     }
 }
