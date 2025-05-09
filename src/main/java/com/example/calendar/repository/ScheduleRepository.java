@@ -35,8 +35,8 @@ public class ScheduleRepository {
     }
 
     public List<ScheduleResponseDto> findAll(String name, String date) {
-        //모든 일정 조회
-        String sql = "SELECT * FROM schedule";
+        // 일정 조회 (name, date 조건 걸어서)
+        String sql = "SELECT * FROM schedule"; //이건 모든 일정 조회, 수정해야함
 
 
 
