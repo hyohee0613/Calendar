@@ -1,8 +1,11 @@
 package com.example.calendar.repository;
 
+import com.example.calendar.dto.ScheduleResponseDto;
 import com.example.calendar.model.Schedule;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 //Schedule 데이터를 저장하고, 읽고, 수정하고, 삭제하는 기능을 담당
@@ -29,5 +32,16 @@ public class ScheduleRepository {
                     schedule.getUpdatedAt());
 
         return schedule;
+    }
+
+    public List<ScheduleResponseDto> findAll(String name, String date) {
+        //모든 일정 조회
+        String sql = "SELECT * FROM schedule";
+
+
+
+
+        return schedule;
+
     }
 }
