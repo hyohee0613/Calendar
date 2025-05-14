@@ -31,7 +31,6 @@
 
    * ScheduleService
      * createSchedule() 메서드에서 Schedule 객체를 처리
-     * (현재는 저장 없이 그대로 반환하는 임시 구조)<br>
 
    * ScheduleResponseDto
      * Schedule 객체를 클라이언트 응답 형식에 맞게 변환<br>
@@ -41,6 +40,37 @@
 
 
 2. 전체일정조회 GET
+   * 클라이언트 (POSTMAN, 브라우저)<br>
+     * 일정조회 요청
+     * Query Parameter 사용
+   
+   * ScheduleController<br>
+       * @GetMapping으로 GET 요청 매핑
+       * @RequestParam으로 name, date 값을 받음
+       * Service에 전달<br>
+
+   * ScheduleService
+       * 전달받은 name, date 조건에 맞는 일정 목록을 Repository에 요청
+
+   * ScheduleRepository
+       * JDBCTemplate으로 DB 조회
+       * 조건에 따라 WHERE 절 포함한 SQL 동적 생성
+
+   * DB (MySQL): 실제 데이터 저장소
+       * schedule 테이블에서 조건에 맞는 행을 조회하여 반환
+
+   * ScheduleRepository
+     * 조회된 List<Schedule>반환
+
+   * ScheduleService
+     * List<Schedule>을 List<ScheduleResponseDto>로 변환
+
+   * ScheduleController<br>
+       * 반환된 List<ScheduleResponseDto>를 ResponseEntity로 감싸서 클라이언트에 응답
+
+   * 최종 반환
+     * 클라이언트는 JSON 형식으로 일정 목록 수신
+
 3. 선택일정조회 GET
 4. 선택일정수정 PUT
 5. 선택일정삭제 DELETE
